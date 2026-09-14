@@ -1,0 +1,151 @@
+
+//Import//
+
+import java.util.Scanner;
+
+//Class//
+
+public class desafiojuntos {
+public static void main(String[] args) {
+
+Scanner entrada = new Scanner(System.in);
+
+    //Variaveis //
+
+    int idbusca;
+    
+    int qnt = 0;
+    
+    int[] ids = new int[50];
+    
+    String[] nome = new String[50];
+    
+    int opçao;
+
+    int proximoId = 1;
+
+    opçao = 1;
+
+    while (opçao != 5) {
+
+// Funçoes da biblioteca // 
+
+    
+System.out.println("Bem vindo a Biblioteca:");
+System.out.println("[1]. Cadastrar Livro");
+System.out.println("[2]. Buscar por ID");
+System.out.println("[3]. Atualizar Livro");
+System.out.println("[4]. Deletar Livro");
+System.out.println("[5]. Sair");
+opçao = entrada.nextInt();
+
+// Cadastro //
+
+switch (opçao) {
+    case 1:
+    if (qnt >= 50) {System.out.println("Biblioteca cheia!!");}
+
+        else {System.out.println("Qual o nome do livro??");
+        
+        entrada.nextLine(); // Limpar o buffer do scanner
+        nome[qnt] = entrada.nextLine();
+        
+       
+        ids[qnt] = proximoId;
+                  proximoId++;
+                    qnt++;
+ 
+     
+     System.out.println("Cadastro realizado!! ID: "+ids[qnt-1]);}
+    
+        break;
+ 
+
+// Buscar por id //
+
+case 2:
+    boolean encontrado;
+    System.out.println("qual o ID do livro??");
+    idbusca = entrada.nextInt();
+
+    encontrado = false;
+
+    for (int i = 0; i < qnt; i++) {
+
+        if (ids[i] == idbusca) {
+            System.out.println("Livro encontrado: " + nome[i]);
+            encontrado = true;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        System.out.println("Livro não encontrado.");
+    }
+    break;
+   
+
+// Atualizar Livro //
+
+case 3:  
+    System.out.println("qual o id do livro que voce quer atulizar o nome"); 
+    idbusca = entrada.nextInt();
+
+    encontrado = false;
+
+    for (int i = 0; i < qnt; i++) {
+
+
+        if (ids[i] == idbusca) {
+            System.out.println("Livro atual: " + nome[i]);
+
+            System.out.println("Digite o novo nome:");
+            entrada.nextLine();
+            nome[i] = entrada.nextLine();
+                      
+            System.out.println("Livro atualizado com sucesso!");
+
+            encontrado = true;
+            break;
+        } 
+    }
+
+    if (!encontrado) {
+        System.out.println("Livro não encontrado.");
+    }
+          break;
+
+
+// Deletar Livro //
+case 4: System.out.println("ID do livro que deseja deletar:  ");
+        idbusca = entrada.nextInt();
+
+        encontrado = false;
+
+         for (int i = 0; i < qnt; i++) {
+
+         if (ids[i] == idbusca)
+          
+           {
+            encontrado = true;
+            for (int j = i; j < qnt - 1; j++) {
+                ids[j] = ids[j + 1];
+                nome[j] = nome[j + 1];
+            }
+                qnt--;
+           System.out.println("Excluido com sucesso!!!");
+           
+                break; }}
+                if (!encontrado){System.out.println("ID NAO ENCONTRADO!!!");}
+                break;
+            
+    // Sair //
+
+ case 5 :
+    System.out.println("Saindo do programa...");
+    break;}
+}
+entrada.close();}
+}
+       
+
